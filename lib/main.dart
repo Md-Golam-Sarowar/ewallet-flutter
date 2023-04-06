@@ -1,5 +1,6 @@
 import 'package:ewalletstack/screens/home.dart';
 import 'package:ewalletstack/screens/login.dart';
+import 'package:ewalletstack/screens/user_registration.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => home(),
         '/login': (context) => login(),
+        '/register' : (context) => registration(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

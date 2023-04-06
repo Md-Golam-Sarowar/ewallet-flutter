@@ -78,7 +78,9 @@ class _loginState extends State<login> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: TextButton(onPressed: (){},
+                      child: TextButton(onPressed: (){
+                        Navigator.pushNamed(context, '/register');
+                      },
                         style: TextButton.styleFrom(
                           primary: Colors.yellow,
                         ), child: const Text('Register', style: TextStyle(fontSize: 20, decoration: TextDecoration.underline)),

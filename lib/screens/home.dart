@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/material.dart';
+import '../dbHelper/dbHelperFile.dart';
+import '../models/user.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -12,6 +14,12 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
+
+    user individual = new user(id:1, name: "golam sarowar", bankAc: "0002601026358", email: "sojolewu6@gmail.com", Nid: "3756221168", mobile: "01712344953", date: "05/04/2023", pass: "836736736", confirmPass: "836736736");
+    dbconnection db = new dbconnection();
+    db.addItem(individual);
+    db.fetchUsers();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white70,
@@ -60,254 +68,374 @@ class _homeState extends State<home> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 4, 4, 20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: const BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/transaction2.avif', height: 80, width: 80, alignment: Alignment.center,),
+                          child: Container(
+                            width: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: const BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    child: Image.asset('Assets/transaction2.avif', height: 80, width: 80, alignment: Alignment.center,),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                    child: Text('Transaction', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                  ),
+                                ],
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('Transaction', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 4, 5, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Image.asset('Assets/bill_pay.jpg', height: 90, width: 90, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 6, 0),
-                                child: Text('Bill Pay', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Image.asset('Assets/bill_pay.jpg', height: 90, width: 90, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 6, 0),
+                                  child: Text('Bill Pay', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(2, 4, 10, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                                child: Image.asset('Assets/Recharge.avif', height: 70, width: 70, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 4, 8, 0),
-                                child: Text('Recharge', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                                  child: Image.asset('Assets/Recharge.avif', height: 70, width: 70, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 4, 8, 0),
+                                  child: Text('Recharge', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 4, 4, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
-                                child: Image.asset('Assets/add_money.webp', height: 75, width: 75, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
-                                child: Text('Add Money', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+                                  child: Image.asset('Assets/add_money.webp', height: 75, width: 75, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
+                                  child: Text('Add Money', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(6, 4, 8, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                child: Image.asset('Assets/statement.jpg', height: 75, width: 75, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
-                                child: Text('Statement', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  child: Image.asset('Assets/statement.jpg', height: 75, width: 75, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
+                                  child: Text('Statement', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(2, 4, 10, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                child: Image.asset('Assets/estatement.webp', height: 75, width: 75, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
-                                child: Text('eStatement', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  child: Image.asset('Assets/estatement.webp', height: 75, width: 75, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
+                                  child: Text('eStatement', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 4, 4, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                child: Image.asset('Assets/bankDeposit.jpg', height: 70, width: 70, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
-                                child: Text('Bank Deposit', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  child: Image.asset('Assets/bankDeposit.jpg', height: 70, width: 70, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 3, 8, 5),
+                                  child: Text('Bank Deposit', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(6, 4, 8, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/cards.avif', height: 80, width: 80, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('Cards', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Image.asset('Assets/cards.avif', height: 80, width: 80, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                  child: Text('Cards', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(2, 4, 10, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/tapandpay.jpg', height: 80, width: 80, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('Tap and Pay', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Image.asset('Assets/tapandpay.jpg', height: 80, width: 80, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                  child: Text('Tap and Pay', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 4, 4, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/sendMoney.png', height: 80, width: 80, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('Send Money', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Image.asset('Assets/sendMoney.png', height: 80, width: 80, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                  child: Text('Send Money', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(6, 4, 8, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/inbox.png', height: 80, width: 80, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('Inbox', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Image.asset('Assets/inbox.png', height: 80, width: 80, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                  child: Text('Inbox', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(2, 4, 10, 20),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Colors.white,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              backgroundColor: Colors.white30
                           ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                child: Image.asset('Assets/more.png', height: 80, width: 80, alignment: Alignment.center,),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-                                child: Text('More', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          child: Container(
+                            width: 150,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Image.asset('Assets/more.png', height: 80, width: 80, alignment: Alignment.center,),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+                                  child: Text('More', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       )
