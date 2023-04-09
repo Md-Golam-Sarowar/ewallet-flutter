@@ -9,9 +9,10 @@ class user
   late final String pass;
   late final String confirmPass;
   late final String mobile;
+  late final String dateOfBirth;
 
   user({required this.id, required this.name, required this.bankAc, required this.Nid, required this.email, required this.date, required this.pass, required this.confirmPass, required
-  this.mobile});
+  this.mobile, required this.dateOfBirth});
 
   Map<String, dynamic> toMap()
   {
@@ -24,8 +25,9 @@ class user
       "email" : email,
       "date" : date,
       "pass" : pass,
-      "cofirmPass" : confirmPass,
-      "mobile" : mobile
+      "confirmPass" : confirmPass,
+      "mobile" : mobile,
+      "dateOfBirth" : dateOfBirth,
     };
   }
 }

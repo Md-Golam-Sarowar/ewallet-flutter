@@ -7,6 +7,8 @@ import 'dart:async';
 
 class dbconnection
 {
+  late Database dbase;
+
   Future<Database> init() async
   {
     Directory directory = await getApplicationDocumentsDirectory();
@@ -27,7 +29,8 @@ class dbconnection
               date TEXT,
               pass TEXT,
               confirmPass TEXT,
-              mobile TEXT
+              mobile TEXT, 
+              dateOfBirth TEXT
           )
               """
           );
@@ -39,15 +42,19 @@ class dbconnection
 
     final db = await init(); //open database
 
-    return db.insert("userDetails", item.toMap(), //toMap() function from MemoModel
+    return db.insert("user", item.toMap(), //toMap() function from MemoModel
       conflictAlgorithm: ConflictAlgorithm.ignore, //ignores conflicts due to duplicate entries
     );
+  }
+
+  void deleteTable() async {
+    await dbase.execute("Drop table user");
   }
 
   Future<List<user>> fetchUsers() async{ //returns the memos as a list (array)
 
     final db = await init();
-    final maps = await db.query("userDetails"); //query all the rows in a table as an array of maps
+    final maps = await db.query("user"); //query all the rows in a table as an array of maps
 
     return List.generate(maps.length, (i) { //create a list of memos
       return user(
@@ -59,7 +66,8 @@ class dbconnection
         date: maps[i]["date"] as String,
         pass: maps[i]["pass"] as String,
         confirmPass: maps[i]["confirmPass"] as String,
-        mobile : maps[i]["mobile"] as String
+        mobile : maps[i]["mobile"] as String,
+        dateOfBirth: maps[i]["dateOfBirth"] as String,
       );
     });
   }

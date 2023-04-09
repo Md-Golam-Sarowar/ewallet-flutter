@@ -1,5 +1,8 @@
 
+import 'package:ewalletstack/dbHelper/dbHelperFile.dart';
 import 'package:flutter/material.dart';
+
+import '../models/user.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -9,18 +12,22 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+  final pnController = TextEditingController();
+  final passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.green,
           title: Text('Login Page', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
         ),
         body: SingleChildScrollView(
           child: Container(
             height: 780,
-            color: Colors.lightBlueAccent,
+            color: Colors.green,
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -28,12 +35,14 @@ class _loginState extends State<login> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 25, 0, 5),
-                      child: Image.asset('Assets/sonali.png', height: 80, width: 80, color: Colors.white,),
+                      child: Image.asset('Assets/sonali.png', height: 80, width: 80, color: Colors.yellow,),
                     ),
                     const Text('Sonali e-Wallet', style: TextStyle(fontSize: 30, color: Colors.white),),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 50, 50, 0),
                       child: TextFormField(
+                        controller: pnController,
+                        style: TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
                           icon: Icon(Icons.phone_android),
                           enabledBorder: OutlineInputBorder(
@@ -47,6 +56,8 @@ class _loginState extends State<login> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 50, 0),
                       child: TextFormField(
+                        controller: passController,
+                        style: TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
                           icon: Icon(Icons.pin),
                           enabledBorder: OutlineInputBorder(
@@ -60,9 +71,60 @@ class _loginState extends State<login> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(50, 40, 50, 0),
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: () async {
+                          bool authenticated = false;
+                          dbconnection db = dbconnection();
+                          List<user> users = await db.fetchUsers();
+
+                            users.forEach((individualUser) {
+
+                              if(individualUser.mobile == pnController.text && individualUser.pass == passController.text)
+                                {
+                                  authenticated= true;
+                                  Navigator.pushNamed(context, '/home');
+                                }
+                            });
+
+                          if(pnController.text.length == 0 || passController.text.length == 0)
+                          {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const AlertDialog(
+                                  // Retrieve the text that the user has entered by using the
+                                  // TextEditingController.
+                                  content: Text("Phone Number/Password can not be empty!"),
+                                );
+                              },
+                            );
+                          }
+                          else if(authenticated == false)
+                            {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const AlertDialog(
+                                    // Retrieve the text that the user has entered by using the
+                                    // TextEditingController.
+                                    content: Text("Invalid username/password"),
+                                  );
+                                },
+                              );
+                            }
+
+                          // showDialog(
+                          //   context: context,
+                          //   builder: (context) {
+                          //     return AlertDialog(
+                          //       // Retrieve the text that the user has entered by using the
+                          //       // TextEditingController.
+                          //       content: Text(pnController.text+"  "+passController.text),
+                          //     );
+                          //   },
+                          // );
+                        },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          primary: Colors.black38,
                           elevation: 0,
                           minimumSize: const Size.fromHeight(50),
                         ),
@@ -96,7 +158,7 @@ class _loginState extends State<login> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Colors.lightBlue,
+                                  color: Colors.black38,
                                 ),
                                 height: 100,
                                 width: 130,
@@ -117,7 +179,7 @@ class _loginState extends State<login> {
                                 height: 100,
                                 width: 120,
                                 decoration: const BoxDecoration(
-                                  color: Colors.lightBlue,
+                                  color: Colors.black38,
                                   borderRadius: BorderRadius.all(Radius.circular(10))
                                 ),
                                 child: Padding(
@@ -135,7 +197,7 @@ class _loginState extends State<login> {
                               height: 100,
                               width: 120,
                               decoration: const BoxDecoration(
-                                color: Colors.lightBlue,
+                                color: Colors.black38,
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
                               child: Column(
