@@ -7,12 +7,10 @@ import 'dart:async';
 
 class dbconnection
 {
-  late Database dbase;
-
   Future<Database> init() async
   {
     Directory directory = await getApplicationDocumentsDirectory();
-    final path = join(directory.path, "userDetails.db");
+    final path = join(directory.path, "userdb.db");
 
     return await openDatabase(
         path,
@@ -29,7 +27,7 @@ class dbconnection
               date TEXT,
               pass TEXT,
               confirmPass TEXT,
-              mobile TEXT, 
+              mobile TEXT,
               dateOfBirth TEXT
           )
               """
@@ -48,7 +46,29 @@ class dbconnection
   }
 
   void deleteTable() async {
-    await dbase.execute("Drop table user");
+    final db = await init();
+    db.execute("Drop table if exists user");
+  }
+
+  void createTable() async
+  {
+    final db = await init();
+    db.execute(
+      """
+        Create table user(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        bankAc TEXT,
+        Nid TEXT,
+        email TEXT,
+        date TEXT,
+        pass TEXT,
+        confirmPass TEXT,
+        mobile TEXT,
+        dateOfBirth TEXT
+    )
+          """
+    );
   }
 
   Future<List<user>> fetchUsers() async{ //returns the memos as a list (array)
@@ -66,8 +86,7 @@ class dbconnection
         date: maps[i]["date"] as String,
         pass: maps[i]["pass"] as String,
         confirmPass: maps[i]["confirmPass"] as String,
-        mobile : maps[i]["mobile"] as String,
-        dateOfBirth: maps[i]["dateOfBirth"] as String,
+        mobile : maps[i]["mobile"] as String
       );
     });
   }

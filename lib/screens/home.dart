@@ -12,8 +12,13 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
+
+    dbconnection db = new dbconnection();
+    // db.deleteTable();
+    // db.createTable();
+
     user individual = user(
-        id: 5,
+        id: 0,
         name: "golam sarowar",
         bankAc: "00026010268473",
         email: "sojol@gmail.com",
@@ -22,32 +27,29 @@ class _homeState extends State<home> {
         date: "05/02/2023",
         pass: "sonali123",
         confirmPass: "sonali123",
-        dateOfBirth: "05/08/1996",
     );
-    dbconnection db = new dbconnection();
-    db.deleteTable();
+
     db.addItem(individual);
 
     user individual1 = user(
-        id: 6,
+        id: 1,
         name: "saiful islam",
         bankAc: "0002601026358",
         email: "sojolewu6@gmail.com",
         Nid: "3756221168",
         mobile: "01877774041",
-        date: "05/01/2023",
         pass: "sonali321",
         confirmPass: "sonali321",
-        dateOfBirth: "05/08/1996",
+        date: "05/08/1996",
     );
     db.addItem(individual1);
 
-    // Future<List<user>> users = db.fetchUsers();
-    // users.then((users) => {
-    //   users.forEach((individualUser) {
-    //     print(individualUser.id);
-    //   })
-    // });
+    Future<List<user>> users = db.fetchUsers();
+    users.then((users) => {
+      users.forEach((individualUser) {
+        print(individualUser.id);
+      })
+    });
 
     return SafeArea(
       child: Scaffold(
