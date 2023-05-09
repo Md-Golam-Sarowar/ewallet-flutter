@@ -1,11 +1,15 @@
+import 'package:ewalletstack/Providers/authenticationProvider.dart';
 import 'package:ewalletstack/screens/home.dart';
 import 'package:ewalletstack/screens/login.dart';
 import 'package:ewalletstack/screens/mainHomePage.dart';
 import 'package:ewalletstack/screens/user_registration.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<authenticationProvider>(
+      create: (_) => authenticationProvider(),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

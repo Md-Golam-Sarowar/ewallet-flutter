@@ -18,7 +18,6 @@ class _homeState extends State<home> {
     // db.createTable();
 
     user individual = user(
-        id: 0,
         name: "golam sarowar",
         bankAc: "00026010268473",
         email: "sojol@gmail.com",
@@ -26,13 +25,12 @@ class _homeState extends State<home> {
         mobile: "01712344953",
         date: "05/02/2023",
         pass: "sonali123",
-        confirmPass: "sonali123",
+        confirmPass: "sonali123", id: 1,
     );
 
-    db.addItem(individual);
+    // db.addItem(individual);
 
     user individual1 = user(
-        id: 1,
         name: "saiful islam",
         bankAc: "0002601026358",
         email: "sojolewu6@gmail.com",
@@ -40,9 +38,9 @@ class _homeState extends State<home> {
         mobile: "01877774041",
         pass: "sonali321",
         confirmPass: "sonali321",
-        date: "05/08/1996",
+        date: "05/08/1996", id: 2,
     );
-    db.addItem(individual1);
+    // db.addItem(individual1);
 
     Future<List<user>> users = db.fetchUsers();
     users.then((users) => {
