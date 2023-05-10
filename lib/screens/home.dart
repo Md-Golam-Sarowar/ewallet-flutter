@@ -12,42 +12,43 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
-
     dbconnection db = new dbconnection();
     // db.deleteTable();
     // db.createTable();
 
     user individual = user(
-        name: "golam sarowar",
-        bankAc: "00026010268473",
-        email: "sojol@gmail.com",
-        Nid: "3756221168",
-        mobile: "01712344953",
-        date: "05/02/2023",
-        pass: "sonali123",
-        confirmPass: "sonali123", id: 1,
+      name: "golam sarowar",
+      bankAc: "00026010268473",
+      email: "sojol@gmail.com",
+      Nid: "3756221168",
+      mobile: "01712344953",
+      date: "05/02/2023",
+      pass: "sonali123",
+      confirmPass: "sonali123",
+      id: 1,
     );
 
     // db.addItem(individual);
 
     user individual1 = user(
-        name: "saiful islam",
-        bankAc: "0002601026358",
-        email: "sojolewu6@gmail.com",
-        Nid: "3756221168",
-        mobile: "01877774041",
-        pass: "sonali321",
-        confirmPass: "sonali321",
-        date: "05/08/1996", id: 2,
+      name: "saiful islam",
+      bankAc: "0002601026358",
+      email: "sojolewu6@gmail.com",
+      Nid: "3756221168",
+      mobile: "01877774041",
+      pass: "sonali321",
+      confirmPass: "sonali321",
+      date: "05/08/1996",
+      id: 2,
     );
     // db.addItem(individual1);
 
     Future<List<user>> users = db.fetchUsers();
     users.then((users) => {
-      users.forEach((individualUser) {
-        print(individualUser.id);
-      })
-    });
+          users.forEach((individualUser) {
+            print(individualUser.id);
+          })
+        });
 
     return SafeArea(
       child: Scaffold(
